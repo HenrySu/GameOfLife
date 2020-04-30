@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BoardSize, Board, Cell, BoardCoordinate } from '../models';
+import { BoardSize, Board, Cell, BoardCoordinate, LifeStatus } from '../models';
 import { LifeService } from '../services/life.service';
 
 @Component({
@@ -21,4 +21,7 @@ export class GameBoardComponent implements OnInit {
     return new Board(boardSize.xSize, boardSize.ySize, livingCellCoords)
   }
 
+  isCellAlive(cell: Cell) {
+    return cell.status === LifeStatus.Alive;
+  }
 }

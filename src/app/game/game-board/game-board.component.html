@@ -1,7 +1,6 @@
 <div class="table-container">
   <div class="table-row" *ngFor="let cells of board.cells">
-    <div class="table-cell" *ngFor="let cell of cells">
-      {{cell.status}}
+    <div class="table-cell" *ngFor="let cell of cells" [class.cell-alive]="isCellAlive(cell)">
     </div>
   </div>
 </div>
