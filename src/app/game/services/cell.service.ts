@@ -10,15 +10,19 @@ export class CellService {
 
   getNeighbors(board: Board, { x, y }: Cell): Cell[] {
     return [
-      board.cells[x - 1][y - 1],
-      board.cells[x][y - 1],
-      board.cells[x + 1][y - 1],
-      board.cells[x - 1][y + 1],
-      board.cells[x - 1][y],
-      board.cells[x + 1][y],
-      board.cells[x][y + 1],
-      board.cells[x + 1][y + 1],
+      board.cells[this.normalizeIndex(x - 1, board.rowCount)][this.normalizeIndex(y - 1, board.columnCount)],
+      board.cells[this.normalizeIndex(x, board.rowCount)][this.normalizeIndex(y - 1, board.columnCount)],
+      board.cells[this.normalizeIndex(x + 1, board.rowCount)][this.normalizeIndex(y - 1, board.columnCount)],
+      board.cells[this.normalizeIndex(x - 1, board.rowCount)][this.normalizeIndex(y + 1, board.columnCount)],
+      board.cells[this.normalizeIndex(x - 1, board.rowCount)][this.normalizeIndex(y, board.columnCount)],
+      board.cells[this.normalizeIndex(x + 1, board.rowCount)][this.normalizeIndex(y, board.columnCount)],
+      board.cells[this.normalizeIndex(x, board.rowCount)][this.normalizeIndex(y + 1, board.columnCount)],
+      board.cells[this.normalizeIndex(x + 1, board.rowCount)][this.normalizeIndex(y + 1, board.columnCount)],
     ];
+  }
+
+  normalizeIndex(index: number, length: number): number {
+    return (index + length) % length;
   }
 
   getLivingNeighborsCount(board: Board, cell: Cell): number {
