@@ -4,7 +4,7 @@ import { LifeStatus } from './life-status';
 
 export class Board {
     cells: Cell[][];
-    constructor(xSize: number, ySize: number, livingCellCoords: BoardCoordinate[]) {
+    constructor(private xSize: number, private ySize: number) {
         this.cells = [];
         for (let x = 0; x < xSize; x++) {
             this.cells[x] = [];
@@ -12,6 +12,14 @@ export class Board {
                 this.cells[x][y] = { x: x, y: y, status: LifeStatus.Dead };
             }
         }
+    }
+
+    updateLivingCells(livingCellCoords: BoardCoordinate[]): this {
         livingCellCoords.forEach(({ x, y }: BoardCoordinate) => this.cells[x][y].status = LifeStatus.Alive);
+        return this;
+    }
+
+    clone(): Board {
+        return new Board(this.xSize, this.ySize);
     }
 }

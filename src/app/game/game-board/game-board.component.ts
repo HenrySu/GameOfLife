@@ -18,7 +18,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
-    return new Board(boardSize.xSize, boardSize.ySize, livingCellCoords)
+    return new Board(boardSize.xSize, boardSize.ySize).updateLivingCells(livingCellCoords);
   }
 
   isCellAlive(cell: Cell) {

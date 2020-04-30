@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BoardCoordinate } from '../models';
+import { BoardCoordinate, Board } from '../models';
 import { of, Observable } from 'rxjs';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class LifeService {
       { x: 3, y: 4 },
       { x: 4, y: 4 },
     ]);
+  }
+
+  evolve(board: Board): Board{
+board.clone()
   }
 }
