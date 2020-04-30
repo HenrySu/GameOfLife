@@ -19,6 +19,7 @@ export class LifeService {
   }
 
   evolve(board: Board): Board{
+    
 board.clone()
   }
 }
