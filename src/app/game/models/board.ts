@@ -4,7 +4,8 @@ import { LifeStatus } from './life-status';
 
 export class Board {
     cells: Cell[][] = [[]];
-    constructor(private rowCount: number, private columnCount: number) {
+    constructor(public readonly rowCount: number, 
+        public readonly columnCount: number) {
         this.cells = [];
         for (let x = 0; x < rowCount; x++) {
             this.cells[x] = [];
