@@ -4,11 +4,11 @@ import { LifeStatus } from './life-status';
 
 export class Board {
     cells: Cell[][] = [[]];
-    constructor(private xSize: number, private ySize: number) {
+    constructor(private rowCount: number, private columnCount: number) {
         this.cells = [];
-        for (let x = 0; x < xSize; x++) {
+        for (let x = 0; x < rowCount; x++) {
             this.cells[x] = [];
-            for (let y = 0; y < ySize; y++) {
+            for (let y = 0; y < columnCount; y++) {
                 this.cells[x][y] = { x: x, y: y, status: LifeStatus.Dead };
             }
         }
@@ -25,6 +25,6 @@ export class Board {
     }
 
     clone(): Board {
-        return new Board(this.xSize, this.ySize);
+        return new Board(this.rowCount, this.columnCount);
     }
 }

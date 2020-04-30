@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoardSize, Board, Cell, BoardCoordinate, LifeStatus } from '../models';
 import { LifeService } from '../services/life.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-game-board',
@@ -13,8 +14,8 @@ export class GameBoardComponent implements OnInit {
   constructor(private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    console.log(this.boardSize.xSize)
     this.lifeSvc.getLivingCellCoordinates().subscribe(livingCellCoords => this.board = this.initializeBoard(this.boardSize, livingCellCoords));
+    interval(1000).subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
   }
 
   initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
