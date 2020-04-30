@@ -13,8 +13,8 @@ export class GameBoardComponent implements OnInit {
   constructor(private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    const livingCellCoords = this.lifeSvc.getLivingCellCoordinates();
-    this.board = this.initializeBoard(this.boardSize, livingCellCoords);
+    console.log(this.boardSize.xSize)
+    this.lifeSvc.getLivingCellCoordinates().subscribe(livingCellCoords => this.board = this.initializeBoard(this.boardSize, livingCellCoords));
   }
 
   initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
