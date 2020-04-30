@@ -10,7 +10,7 @@ export class GameService {
   constructor() { }
 
   getRandomBoolean() {
-    return Math.random() > 0.3;
+    return Math.random() > 0.7;
   }
 
   getRandomStatus(): LifeStatus {
