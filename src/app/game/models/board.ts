@@ -4,7 +4,7 @@ import { LifeStatus } from './life-status';
 
 export class Board {
     cells: Cell[][] = [[]];
-    constructor(public readonly rowCount: number, 
+    constructor(public readonly rowCount: number,
         public readonly columnCount: number) {
         this.cells = [];
         for (let x = 0; x < rowCount; x++) {
@@ -21,7 +21,7 @@ export class Board {
     }
 
     populateCells(cells: Cell[]): this {
-        cells.forEach(cell => this.cells[cell.x][cell.y].status = cell.status);
+        cells.forEach(({ x, y, status }: Cell) => this.cells[x][y].status = status);
         return this;
     }
 
