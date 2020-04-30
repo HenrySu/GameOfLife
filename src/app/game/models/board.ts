@@ -19,7 +19,7 @@ export class Board {
         return this;
     }
 
-    clone(): Board {
+    populateCells(): Board {
         return new Board(this.xSize, this.ySize);
     }
 }
