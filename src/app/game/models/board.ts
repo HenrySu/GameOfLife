@@ -12,5 +12,6 @@ export class Board {
                 this.cells[x][y] = { x: x, y: y, status: LifeStatus.Dead };
             }
         }
+        livingCellCoords.forEach(({ x, y }: BoardCoordinate) => this.cells[x][y].status = LifeStatus.Alive);
     }
 }
