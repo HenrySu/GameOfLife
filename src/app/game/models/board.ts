@@ -25,7 +25,7 @@ export class Board {
         return this;
     }
 
-    clone(): Board {
+    getNewBoard(): Board {
         return new Board(this.rowCount, this.columnCount);
     }
 }
