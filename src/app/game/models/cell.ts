@@ -1,6 +1,7 @@
 import { LifeStatus } from './life-status';
 
 export interface Cell {
-    location: Location;
+    x:number;
+    y:number;
     status: LifeStatus;
 }
