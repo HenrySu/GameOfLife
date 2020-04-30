@@ -1,3 +1,3 @@
-export interface Board {
+export class Board {
 
 }
