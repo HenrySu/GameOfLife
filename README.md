@@ -1,5 +1,5 @@
 # GameOfLife
-
+In memory of Conway, the angular implementation of Conway's "Game of life".
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
 ## Development server
