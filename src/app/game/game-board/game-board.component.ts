@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BoardSize, Board, Cell } from '../models';
+import { BoardSize, Board, Cell, BoardCoordinate } from '../models';
 import { LifeService } from '../services/life.service';
 
 @Component({
@@ -13,12 +13,12 @@ export class GameBoardComponent implements OnInit {
   constructor(private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    const livingCells = this.lifeSvc.getLivingCells();
-    this.board = initializeBoard(this.boardSize, livingCells);
+    const livingCellCoords = this.lifeSvc.getLivingCellCoordinates();
+    this.board = initializeBoard(this.boardSize, livingCellCoords);
   }
 
-  initializeBoard(boardSize: BoardSize, cells: Cell[]): Board {
-
+  initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
+    return new Board(boardSize.xSize, boardSize.ySize, livingCellCoords)
   }
 
 }
