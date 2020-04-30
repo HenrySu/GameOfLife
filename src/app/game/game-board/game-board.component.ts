@@ -14,7 +14,7 @@ export class GameBoardComponent implements OnInit {
 
   ngOnInit(): void {
     const livingCellCoords = this.lifeSvc.getLivingCellCoordinates();
-    this.board = initializeBoard(this.boardSize, livingCellCoords);
+    this.board = this.initializeBoard(this.boardSize, livingCellCoords);
   }
 
   initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
