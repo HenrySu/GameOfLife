@@ -25,7 +25,7 @@ export class LifeService {
       const nextStatus = this.cellSvc.getNextGenerationStatus(board, cell);
       return { ...cell, status: nextStatus };
     });
-    return board.populateCells();
+    return board.clone().populateCells(nextGenerationCells);
   }
 
 

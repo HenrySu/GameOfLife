@@ -3,7 +3,7 @@ import { BoardCoordinate } from './board-coordinate';
 import { LifeStatus } from './life-status';
 
 export class Board {
-    cells: Cell[][];
+    cells: Cell[][] = [[]];
     constructor(private xSize: number, private ySize: number) {
         this.cells = [];
         for (let x = 0; x < xSize; x++) {
@@ -19,7 +19,12 @@ export class Board {
         return this;
     }
 
-    populateCells(): Board {
+    populateCells(cells: Cell[]): this {
+        cells.forEach(cell => this.cells[cell.x][cell.y].status = cell.status);
+        return this;
+    }
+
+    clone(): Board {
         return new Board(this.xSize, this.ySize);
     }
 }
