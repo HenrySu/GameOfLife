@@ -1,4 +1,4 @@
 export interface BoardSize {
-    xSize: number;
-    ySize: number;
+    rowCount: number;
+    columnCount: number;
 }

@@ -12,16 +12,12 @@ import { GameService } from '../services/game.service';
 export class GameBoardComponent implements OnInit {
   @Input() boardSize: BoardSize;
   board: Board;
-  constructor(private gaveSvc: GameService,
+  constructor(private gameSvc: GameService,
     private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    this.gaveSvc.getLivingCellCoordinates().subscribe(livingCellCoords => this.board = this.initializeBoard(this.boardSize, livingCellCoords));
+    this.gameSvc.getRandomBoard(this.boardSize).subscribe(board => this.board = board);
     interval(1000).subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
-  }
-
-  initializeBoard(boardSize: BoardSize, livingCellCoords: BoardCoordinate[]): Board {
-    return new Board(boardSize.xSize, boardSize.ySize).updateLivingCells(livingCellCoords);
   }
 
   isCellAlive(cell: Cell) {
