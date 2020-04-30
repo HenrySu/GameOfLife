@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BoardSize } from '../models';
+import { BoardSize, Board } from '../models';
 
 @Component({
   selector: 'app-game-board',
@@ -8,10 +8,15 @@ import { BoardSize } from '../models';
 })
 export class GameBoardComponent implements OnInit {
   @Input() boardSize: BoardSize;
-  
+  board: Board;
   constructor() { }
 
   ngOnInit(): void {
+    this.board = initializeBoard(this.boardSize);
+  }
+
+  initializeBoard(boardSize: BoardSize): Board {
+
   }
 
 }
