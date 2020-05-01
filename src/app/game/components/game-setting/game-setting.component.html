@@ -11,6 +11,11 @@
       <input type="number" matInput pattern="\d+" formControlName="columnCount">
     </mat-form-field>
   </section>
+  <mat-form-field>
+    <mat-label>Alive cell ratio</mat-label>
+    <input type="number" min="0" max="100" step="1" matInput formControlName="alivePercentage">
+    <span matSuffix>%</span>
+  </mat-form-field>
 </form>
 
 <label for="alive-percentage">Alive cell ratio:</label>

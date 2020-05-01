@@ -7,7 +7,7 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ['./game-setting.component.scss']
 })
 export class GameSettingComponent implements OnInit {
-  alivePercentage: number = 0.5;
+  alivePercentage: number = 50;
   settingForm = this.fb.group({
     boardSize: this.fb.group({
       rowCount: 100,
