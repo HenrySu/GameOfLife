@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from "@angular/material/slider";
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,6 +20,7 @@ const materialModules = [MatInputModule,
   MatToolbarModule,
   MatDialogModule,
   MatTableModule,
+  MatSliderModule,
   MatProgressSpinnerModule]
 
 @NgModule({

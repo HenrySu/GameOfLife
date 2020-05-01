@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { GameBoardComponent } from './game/components/game-board/game-board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GameSettingComponent } from './game/components/game-setting/game-setting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameBoardComponent
+    GameBoardComponent,
+    GameSettingComponent
   ],
   imports: [
     BrowserModule,
