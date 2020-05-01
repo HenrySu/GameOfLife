@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-setting.component.scss']
 })
 export class GameSettingComponent implements OnInit {
-
+  alivePercentage: number = 0.5;
   constructor() { }
 
   ngOnInit(): void {
   }
-  
+
   alivePercentageDisplayFunc(percentage: number): string {
-    return `${percentage * 100}%`;
+    return `${(percentage * 100).toFixed(0)}%`;
   }
 }
