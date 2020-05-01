@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BoardSize, Board, Cell, BoardCoordinate, LifeStatus } from '../models';
-import { LifeService } from '../services/life.service';
 import { interval } from 'rxjs';
-import { GameService } from '../services/game.service';
+import { BoardSize, Board, Cell, LifeStatus } from '../../models';
+import { GameService } from '../../services/game.service';
+import { LifeService } from '../../services/life.service';
 
 @Component({
   selector: 'app-game-board',
