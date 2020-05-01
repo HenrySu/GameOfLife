@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { interval } from 'rxjs';
-import { BoardSize, Board, Cell, LifeStatus } from '../../models';
+import { Component, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
+import { Board, Cell, GameSetting, LifeStatus } from '../../models';
 import { GameService } from '../../services/game.service';
 import { LifeService } from '../../services/life.service';
 
@@ -10,17 +10,25 @@ import { LifeService } from '../../services/life.service';
   styleUrls: ['./game-board.component.scss']
 })
 export class GameBoardComponent implements OnInit {
-  @Input() boardSize: BoardSize;
   board: Board;
+  evolutionSubscription: Subscription;
   constructor(private gameSvc: GameService,
     private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    this.gameSvc.getRandomBoard(this.boardSize).subscribe(board => this.board = board);
-    interval(1000).subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
+  }
+
+  private createGame(gameSetting: GameSetting): Subscription {
+    this.gameSvc.getRandomBoard(gameSetting).subscribe(board => this.board = board);
+    return interval(gameSetting.evolutionTimeInterval).subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
   }
 
   isCellAlive(cell: Cell) {
     return cell.status === LifeStatus.Alive;
+  }
+
+  updateBoard(gameSetting: GameSetting) {
+    this.evolutionSubscription?.unsubscribe();;
+    this.evolutionSubscription = this.createGame(gameSetting);
   }
 }

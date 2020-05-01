@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { GameSetting } from './game/models';
+import { GameBoardComponent } from './game/components/game-board/game-board.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { GameSetting } from './game/models';
 })
 export class AppComponent {
   title = 'game-of-life';
+  @ViewChild(GameBoardComponent) gameBoardComponent: GameBoardComponent;
   gameSettingChanged(gameSetting: GameSetting) {
-    console.log(gameSetting)
+    this.gameBoardComponent.updateBoard(gameSetting);
   }
 }
