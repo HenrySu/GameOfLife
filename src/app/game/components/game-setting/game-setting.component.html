@@ -1,7 +1,7 @@
 <h2>Game setting</h2>
 
-<form [formGroup]="settingForm">
-  <section id="board-size" formGroupName="boardSize">
+<form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+  <section id="board-size">
     <mat-form-field>
       <mat-label>Row count</mat-label>
       <input type="number" matInput pattern="\d+" formControlName="rowCount">
