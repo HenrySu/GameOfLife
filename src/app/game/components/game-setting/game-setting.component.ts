@@ -13,15 +13,12 @@ export class GameSettingComponent implements OnInit {
       rowCount: 100,
       columnCount: 100
     }),
-    alivePercentage: this.alivePercentage
+    alivePercentage: this.alivePercentage,
+    evolutionTimeInterval: 1000
   });
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-  }
-
-  alivePercentageDisplayFunc(percentage: number): string {
-    return `${(percentage * 100).toFixed(0)}%`;
   }
 }
