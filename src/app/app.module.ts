@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { MaterialModule } from './material/material.module';
-import { GameBoardComponent } from './game/components/game-board/game-board.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
+import { GameBoardComponent } from './game/components/game-board/game-board.component';
 import { GameSettingComponent } from './game/components/game-setting/game-setting.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import { GameSettingComponent } from './game/components/game-setting/game-settin
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     MaterialModule,
     BrowserAnimationsModule
   ],

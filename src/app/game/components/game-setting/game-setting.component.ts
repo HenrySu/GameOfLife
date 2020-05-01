@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-game-setting',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameSettingComponent implements OnInit {
   alivePercentage: number = 0.5;
-  constructor() { }
+  settingForm = this.fb.group({
+    boardSize: this.fb.group({
+      rowCount: 100,
+      columnCount: 100
+    }),
+    alivePercentage: this.alivePercentage
+  });
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
