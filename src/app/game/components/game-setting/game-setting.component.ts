@@ -17,7 +17,7 @@ export class GameSettingComponent implements OnInit {
       columnCount: 100
     }),
     alivePercentage: this.alivePercentage,
-    evolutionTimeInterval: 1040
+    evolutionTimeInterval: 100
   });
 
   constructor(private fb: FormBuilder) { }
