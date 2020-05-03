@@ -15,11 +15,6 @@
     <input type="number" min="0" max="100" step="1" matInput formControlName="alivePercentage">
     <span matSuffix>%</span>
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>Generation lifespan</mat-label>
-    <input type="number" min="100" step="100" matInput formControlName="evolutionTimeInterval">
-    <span matSuffix>ms</span>
-  </mat-form-field>
 
   <section id="submit-section">
     <button mat-button type="submit" [disabled]="!settingForm.valid">Apply</button>
