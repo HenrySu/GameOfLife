@@ -17,10 +17,10 @@ export class GameService {
     return this.getRandomBoolean(alivePercentage) ? LifeStatus.Alive : LifeStatus.Dead;
   }
 
-  getRandomBoard(gameSetting: GameSetting): Observable<Board> {
+  getRandomBoard(gameSetting: GameSetting): Board {
     const board = new Board(gameSetting.rowCount, gameSetting.columnCount);
 
     const cells = board.cells.flat().map(cell => ({ ...cell, status: this.getRandomStatus(gameSetting.alivePercentage) }));
-    return of(board.populateCells(cells));
+    return board.populateCells(cells);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Subscription, fromEvent, Observable, Subject } from 'rxjs';
+import { interval, Subject, Subscription, Observable } from 'rxjs';
+import { tap, switchMap } from "rxjs/operators";
 import { Board, Cell, GameSetting, LifeStatus } from '../../models';
 import { GameService } from '../../services/game.service';
 import { LifeService } from '../../services/life.service';
@@ -12,20 +13,22 @@ import { LifeService } from '../../services/life.service';
 export class GameBoardComponent implements OnInit {
   board: Board;
   evolutionSubscription: Subscription;
-  lifespan$: Subject<number> = new Subject();
   boardSubject$: Subject<Board> = new Subject();
+  lifespanStream: Subject<number> = new Subject();
   gameSettingStream: Subject<GameSetting> = new Subject();
 
   constructor(private gameSvc: GameService,
     private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
-    this.gameSettingStream.subscribe(setting => this.createGame(setting));
+    this.gameSettingStream.pipe(switchMap(setting => this.createGame(setting)))
+      .subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
   }
 
-  private createGame(gameSetting: GameSetting): Subscription {
-    this.gameSvc.getRandomBoard(gameSetting).subscribe(board => this.board = board);
-    return interval(gameSetting.evolutionTimeInterval).subscribe(_ => this.board = this.lifeSvc.evolve(this.board));
+
+  private createGame(gameSetting: GameSetting): Observable<any> {
+    this.board = this.gameSvc.getRandomBoard(gameSetting);
+    return this.lifespanStream.pipe(switchMap(lifeSpan => interval(lifeSpan)));
   }
 
   isCellAlive(cell: Cell) {
@@ -39,6 +42,6 @@ export class GameBoardComponent implements OnInit {
   }
 
   updateLifespan(lifespanInMiliSecond: number) {
-    this.lifespan$.next(lifespanInMiliSecond);
+    this.lifespanStream.next(lifespanInMiliSecond);
   }
 }
