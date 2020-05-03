@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game/components/game-board/game-board.component';
 import { GameSettingComponent } from './game/components/game-setting/game-setting.component';
 import { MaterialModule } from './material/material.module';
+import { PlaySettingComponent } from './game/components/play-setting/play-setting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameBoardComponent,
-    GameSettingComponent
+    GameSettingComponent,
+    PlaySettingComponent
   ],
   imports: [
     BrowserModule,

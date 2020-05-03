@@ -31,4 +31,7 @@ export class GameBoardComponent implements OnInit {
     this.evolutionSubscription?.unsubscribe();;
     this.evolutionSubscription = this.createGame(gameSetting);
   }
+
+  updateLifespan(lifespanInMiliSecond: number) {
+  }
 }

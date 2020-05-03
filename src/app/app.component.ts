@@ -10,7 +10,12 @@ import { GameBoardComponent } from './game/components/game-board/game-board.comp
 export class AppComponent {
   title = 'game-of-life';
   @ViewChild(GameBoardComponent) gameBoardComponent: GameBoardComponent;
+
   gameSettingChanged(gameSetting: GameSetting) {
     this.gameBoardComponent.updateBoard(gameSetting);
+  }
+
+  updateLifespan(lifespanInMiliSecond: number) {
+    this.gameBoardComponent.updateLifespan(lifespanInMiliSecond);
   }
 }
