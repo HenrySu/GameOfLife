@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, fromEvent, Observable, Subject } from 'rxjs';
 import { Board, Cell, GameSetting, LifeStatus } from '../../models';
 import { GameService } from '../../services/game.service';
 import { LifeService } from '../../services/life.service';
@@ -12,10 +12,15 @@ import { LifeService } from '../../services/life.service';
 export class GameBoardComponent implements OnInit {
   board: Board;
   evolutionSubscription: Subscription;
+  lifespan$: Subject<number> = new Subject();
+  boardSubject$: Subject<Board> = new Subject();
+  gameSettingStream: Subject<GameSetting> = new Subject();
+
   constructor(private gameSvc: GameService,
     private lifeSvc: LifeService) { }
 
   ngOnInit(): void {
+    this.gameSettingStream.subscribe(setting => this.createGame(setting));
   }
 
   private createGame(gameSetting: GameSetting): Subscription {
@@ -28,10 +33,12 @@ export class GameBoardComponent implements OnInit {
   }
 
   updateBoard(gameSetting: GameSetting) {
-    this.evolutionSubscription?.unsubscribe();;
-    this.evolutionSubscription = this.createGame(gameSetting);
+    this.gameSettingStream.next(gameSetting);
+    // this.evolutionSubscription?.unsubscribe();;
+    // this.evolutionSubscription = this.createGame(gameSetting);
   }
 
   updateLifespan(lifespanInMiliSecond: number) {
+    this.lifespan$.next(lifespanInMiliSecond);
   }
 }
